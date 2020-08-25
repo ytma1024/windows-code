@@ -260,3 +260,135 @@
 
 # def index(*args,**kwargs):
 #     pass
+
+
+# 示例：
+# import time
+#
+# def home(name):
+#     print('welcome %s to home'%name)
+#     return 1
+#
+# def outer(func):
+#     def wrapper(*args,**kwargs):
+#         start=time.time()
+#         time.sleep(3)
+#         res=func(*args,**kwargs)
+#         end=time.time()
+#         print(end-start)
+#         return res
+#     return wrapper
+#
+# # wrapper('Bruce')
+#
+# home=outer(home)  # home=wrapper的内存地址
+# res=home('Bruce')  # res=wrapper('Bruce')
+# print(home)
+# print(res)
+
+# 示例优化：
+# import time
+#
+# def outer(func):
+#     def wrapper(*args,**kwargs):
+#         start=time.time()
+#         time.sleep(3)
+#         res=func(*args,**kwargs)
+#         end=time.time()
+#         print(end-start)
+#         return res
+#     return wrapper
+#
+# @outer  # 相当于home=outer(home)
+# def home(name):
+#     print('welcome %s to home'%name)
+#     return 1
+#
+# # home=outer(home)  # home=wrapper的内存地址
+# res=home('Bruce')  # res=wrapper('Bruce')
+# print(home)
+# print(res)
+
+# 例子(登录功能)：
+# import time
+#
+# def register():
+#     inp_usrname=input('请输入您的名字>>:')
+#     inp_usrpwd=input('请输入您的密码>>:')
+#     with open(r'info_usr.txt',mode='rt',encoding='utf-8') as f:
+#         usrname,usrpwd=f.read().split(':')
+#         if inp_usrname==usrname and inp_usrpwd==usrpwd:
+#             print('登陆成功！')
+#         else:
+#             print('您输入的账号或者密码错误！')
+#
+# def outer():
+#     def register_decorator():
+#         start=time.time()
+#         time.sleep(3)
+#         register()
+#         end=time.time()
+#         print("登录花费时间>>:",end-start)
+#     return register_decorator
+#
+# # register=outer()  # 为啥这个就不可以，只是名字不同而已
+# # register()
+# f=outer()  # 这个可以运行
+# f()
+
+# 示例优化：
+# import time
+#
+# def register(*args,**kwargs):
+#     inp_usrname=input('请输入您的名字>>:').strip()
+#     inp_usrpwd=input('请输入您的密码>>:').strip()
+#     with open(r'info_usr.txt',mode='rt',encoding='utf-8') as f:
+#         usrname,usrpwd=f.read().split(':')
+#         if inp_usrname==usrname and inp_usrpwd==usrpwd:
+#             print('登陆成功！')
+#         else:
+#             print('您输入的账号或者密码错误！')
+#     return 1
+#
+# def outer(func):
+#     def register_decorator(*args,**kwargs):
+#         start=time.time()
+#         time.sleep(3)
+#         res=func(*args,**kwargs)
+#         end=time.time()
+#         print("登录花费时间>>:",end-start)
+#         return res
+#     return register_decorator
+#
+# register=outer(register)
+# res = register()
+# print('返回值:',res)
+
+# 示例再次优化
+# import time
+#
+# def outer(func):
+#     def register_decorator(*args,**kwargs):
+#         start=time.time()
+#         time.sleep(3)
+#         res=func(*args,**kwargs)
+#         end=time.time()
+#         print("登录花费时间>>:",end-start)
+#         return res
+#     return register_decorator
+#
+# @outer  # 相当于register=outer(register)
+# def register(*args,**kwargs):
+#     inp_usrname=input('请输入您的名字>>:').strip()
+#     inp_usrpwd=input('请输入您的密码>>:').strip()
+#     with open(r'info_usr.txt',mode='rt',encoding='utf-8') as f:
+#         usrname,usrpwd=f.read().split(':')
+#         if inp_usrname==usrname and inp_usrpwd==usrpwd:
+#             print('登陆成功！')
+#         else:
+#             print('您输入的账号或者密码错误！')
+#     return 1
+#
+# # register=outer(register)
+# res = register()
+# print('返回值:',res)
