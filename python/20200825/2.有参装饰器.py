@@ -158,14 +158,14 @@
 # transfer()
 
 # 有参装饰器模板：
-def 有参装饰器(x,y,z):
-    def outer(func):
-        def wrapper(*args,**kwargs):
-            res=func(*args,**kwargs)
-            return res
-        return wrapper
-    return outer
-
-@有参装饰器(1,y=2,z=3)
-def 被装饰对象():
-    pass
+# def 有参装饰器(x,y,z):
+#     def outer(func):
+#         def wrapper(*args,**kwargs):
+#             res=func(*args,**kwargs)
+#             return res
+#         return wrapper
+#     return outer
+#
+# @有参装饰器(1,y=2,z=3)
+# def 被装饰对象():
+#     pass
