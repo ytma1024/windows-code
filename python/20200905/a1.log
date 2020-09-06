@@ -1,0 +1,4 @@
+[2020-09-05 22:49:01,263][MainThread:8656][task_id:kkk][src.py:26][INFO][这是一条info日志！]
+[2020-09-05 22:52:22,934][MainThread:5772][task_id:kkk][src.py:26][INFO][这是一条info日志！]
+[2020-09-06 10:12:31,228][MainThread:1064][task_id:用户交易][src.py:32][INFO][logger3产生的info日志]
+[2020-09-06 10:13:12,790][MainThread:13328][task_id:用户常规][src.py:35][INFO][logger4产生的info日志]
